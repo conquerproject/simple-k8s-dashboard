@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: simple-k8s-dashboard
 spec:
+  replicas: 1
   selector:
       matchLabels:
         name: simple-k8s-dashboard
@@ -16,3 +17,15 @@ spec:
         image: benhursilva/simple-k8s-dashboard:latest
         ports:
         - containerPort: 8080
+        
+        # https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
+        command: ["python3"]
+        args: ["app.py"]
+
+        # https://kubernetes.io/docs/tasks/inject-data-application/define-interdependent-environment-variables/
+        env:
+          - name: APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: simple-k8s-dashboard
+                key: APP_NAME
