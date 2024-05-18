@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-k8s-dashboard
+spec:
+  selector:
+      matchLabels:
+        name: simple-k8s-dashboard
+  template:
+    metadata:
+      labels:
+        name: simple-k8s-dashboard
+    spec:
+      containers:
+      - name: simple-k8s-dashboard
+        image: benhursilva/simple-k8s-dashboard:latest
+        ports:
+        - containerPort: 8080

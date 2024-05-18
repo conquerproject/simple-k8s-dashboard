@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: simple-k8s-dashboard
+spec:
+  selector:
+    name: simple-k8s-dashboard
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
